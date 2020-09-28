@@ -1,0 +1,11 @@
+# Filename: docker-compose.yaml
+# Purpose: for isolated conversion
+# Usage: `make dev`
+
+
+version: "3"
+services:
+  convert:
+    build: .
+    volumes:
+      - ${PWD}:/themes
