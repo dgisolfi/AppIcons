@@ -12,17 +12,8 @@ convert() {
 }
 
 color() {
-    grep -rl 'fill=\"#.*\"\/><g fill=\"#.*\"><path' ./test | xargs sed -i "s/fill=\"#.*\"\/><g fill=\"#.*\"><path/fill=\"#$2\"\/><g fill=\"#$1\"><path/g"
+    grep -rl 'fill=\"#.*\"\/><g fill=\"#.*\"><path' ./icons | xargs sed -i "s/fill=\"#.*\"\/><g fill=\"#.*\"><path/fill=\"#$2\"\/><g fill=\"#$1\"><path/g"
 }
-
-all() {
-    THEMES=$(find . -type d \( ! -name steps \) -maxdepth 1)
-    for theme in $THEMES ; 
-    do
-		svgtopng ./$theme/svg ./$theme/png
-	done
-}
-
 
 case "$1" in
 convert)
@@ -31,11 +22,8 @@ convert)
 color)
  color $2 $3
  ;;
-all)
- all
- ;;
 *)
- echo $"Usage: $PROG { all | convert <in> <out> | color forground background }"
+ echo $"Usage: $PROG { convert <in> <out> | color forground background }"
  exit 1
 esac
 
